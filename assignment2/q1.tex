@@ -62,36 +62,35 @@
 \renewcommand{\thetable}{\theenumi}
 
 \textbf{Question}:\\
-Show that the points $\textbf{A}\brak{-6,10},\textbf{B}\brak{-4,6}$ and $\textbf{C}\brak{3,-8}$ are collinear such that $AB = \frac{2}{9}AC$.\\
+
+Show that the points $\textbf{A}\brak{-6,10},\textbf{B}\brak{-4,6}$ and $\textbf{C}\brak{3,-8}$ are collinear and prove that $AB = \frac{2}{9}AC$.\\
 		
 \solution 
-To prove that the given points are collinear, we check the determinant of the following matrix:
 
-$$
-\text{Det} = 
-\begin{vmatrix}
--6 & 10 & 1 \\
--4 & 6 & 1 \\
-3 & -8 & 1
+If this determinant is zero, 
+$\begin{vmatrix}
+1 & 1 & 1 \\
+-6 & -4 & 3 \\
+10 & 6 & -8
 \end{vmatrix}
-$$
+$
+then $A$, $B$, and $C$ are collinear.
 
-If the determinant is zero, then the points $A$, $B$, and $C$ are collinear. Therefore, we have:
-
 $$
-\text{Det} = 
+\text{Det} =
 \begin{vmatrix}
--6 & 10 & 1 \\
--4 & 6 & 1 \\
-3 & -8 & 1
+1 & 1 & 1 \\
+-6 & -4 & 3 \\
+10 & 6 & -8 \\
 \end{vmatrix}
-= 0$$
+= 1 \cdot \left((-4)(-8) - (3)(6)\right) - 1 \cdot \left((-6)(-8) - (3)(10)\right) + 1 \cdot \left((-6)(6) - (-4)(10)\right)$$
 
-Thus, $A$, $B$, and $C$ are collinear.\\
+$$= 1 \cdot (32 - 18) - 1 \cdot (48 - 30) + 1 \cdot (-36 + 40)$$
 
-We can prove that $AB = \frac{2}{9} AC$ using the section formula.\\
+$$= 1 \cdot 14 - 1 \cdot 18 + 1 \cdot 4 = 14 - 18 + 4 = 0$$
 
-We want to show that $B\brak{-4, 6}$ divides $AC$ in the ratio $2:7$.\\
+
+$\therefore$ $A$, $B$, and $C$ are collinear.\\
 
 Using the section formula, if $B$ divides $AC$ in the ratio $m:n$, then:
 
@@ -101,9 +100,8 @@ Equating the coordinates, we get
 $$\frac{m}{n} = \frac{2}{7}$$
 
 
-Thus, it confirms that $B$ divides $AC$ in the ratio $2:7$.
+$\therefore$ It confirms that $B$ divides $AC$ in the ratio $2:7$.
 Since $B$ divides $AC$in the ratio $2:7$, we have:
-
 
 $$\frac{AB}{AC} = \frac{2}{2+7} = \frac{2}{9}$$
 
