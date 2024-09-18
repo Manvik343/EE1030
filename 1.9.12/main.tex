@@ -64,7 +64,7 @@
 
 \textbf{Question}:\\
 
-Find the length of the segment joining $A\vec(-6,7)$ and $B\vec(-1,-5)$. Also, find the midpoint of $AB$.
+Find the length of the segment joining $\vec{A}(-6, 7)$ and $\vec{B}(-1, -5)$. Also, find the midpoint of $AB$.
 \hfill (10, 2021)\\
 
 \solution
@@ -74,7 +74,8 @@ A = $\myvec{-6\\7}$ and B = $\myvec{-1\\-5}$, then length of line segment is $\n
 \begin{align}
 	B-A &= \myvec{-1\\-5}-\myvec{-6\\7}\\
             &= \myvec{5\\-12}\\
-	\norm{B-A} &= \sqrt{\brak{5}^2 + \brak{-12}^2} = \sqrt{169}\\
+	\norm{B-A} &= \sqrt{(B-A)^T(B-A)}\\
+	&=\sqrt{\brak{5}^2 + \brak{-12}^2} = \sqrt{169}\\
 	    &= 13
 \end{align}
 
@@ -88,4 +89,9 @@ Midpoint M of AB is $\frac{A+B}{2}$
 	  &= \myvec{-3.5\\1}
 \end{align}
 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/fig1.png}
+\end{figure}
 \end{document}
