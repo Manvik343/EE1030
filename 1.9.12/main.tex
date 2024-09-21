@@ -64,31 +64,41 @@
 
 \textbf{Question}:\\
 
-Find the length of the segment joining $\vec{A}(-6, 7)$ and $\vec{B}(-1, -5)$. Also, find the midpoint of $AB$.
+Find the length of the segment joining $\vec{A}(-6, 7)$ and $\vec{B}(-1, -5)$. Also, find the midpoint of $\vec{AB}$.
 \hfill (10, 2021)\\
 
 \solution
 
-A = $\myvec{-6\\7}$ and B = $\myvec{-1\\-5}$, then length of line segment is $\norm{B-A}$.
+\begin{table}[h!]    
+  \centering
+  \input{tables/table.tex}
+  \label{tab 1.8.18}
+\end{table}
+
+\begin{enumerate}
+
+	\item Length of line segment is $\norm{B-A}$.
 
 \begin{align}
 	B-A &= \myvec{-1\\-5}-\myvec{-6\\7}\\
             &= \myvec{5\\-12}\\
-	\norm{B-A} &= \sqrt{(B-A)^T(B-A)}\\
-	&=\sqrt{\brak{5}^2 + \brak{-12}^2} = \sqrt{169}\\
-	    &= 13
+	\norm{B-A} &= \sqrt{(B-A)^{T}(B-A)}\\
+	&=\sqrt{\brak{5}^[2] + \brak{-12}^{2}} = \sqrt{169}\\
+	    &= 13 \text{cm}
 \end{align}
 
-$\therefore$ The length of line segment is $13$ units.\\
+$\therefore$ The length of line segment is $13$ cm.\\
 
-Midpoint M of AB is $\frac{A+B}{2}$
-
+\item Midpoint of line segment 
 \begin{align}
 	M &= \frac{A+B}{2}\\
 	  &= \frac{\myvec{-6\\7} + \myvec{-1\\-5}}{2} = \frac{\myvec{-7\\2}}{2}\\
 	  &= \myvec{-3.5\\1}
 \end{align}
 
+		$\therefore$ M = $\myvec{-3.5\\1}$
+
+\end{enumerate}
 
 \begin{figure}[h!]
 	\centering
