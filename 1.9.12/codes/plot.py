@@ -1,65 +1,69 @@
-import ctypes
+import sys
+sys.path.insert(0, '/home/manvik/matgeo/codes/CoordGeo')  # path to my scripts
+import numpy as np
 import matplotlib.pyplot as plt
+import ctypes
 
 # Load the shared library
-lib = ctypes.CDLL('./distance_midpoint.so')
+geometry = ctypes.CDLL('./geometry.so')
 
-# Define argument and return types for the C functions
-lib.distance.argtypes = [ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double]
-lib.distance.restype = ctypes.c_double
+# Define argument and return types for C functions
+geometry.distance.restype = ctypes.c_double
+geometry.distance.argtypes = [ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double]
+geometry.midpoint.argtypes = [ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double)]
 
-lib.midpoint.argtypes = [ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, 
-                         ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_double)]
-lib.midpoint.restype = None
+# Calculate distance and midpoint using C functions
+def calculate(A, B):
+    dist = geometry.distance(A[0], A[1], B[0], B[1])
+    mx, my = ctypes.c_double(), ctypes.c_double()
+    geometry.midpoint(A[0], A[1], B[0], B[1], ctypes.byref(mx), ctypes.byref(my))
+    return dist, (mx.value, my.value)
 
-# Coordinates of points A and B
-x1, y1 = -6, 7  # Point A
-x2, y2 = -1, -5  # Point B
+# Generate the plot
+def plot(A, B, distance, midpoint):
+    plt.figure(figsize=(6, 6))
+    
+    # Prepare coordinates for plotting
+    x_coords = [A[0], B[0], midpoint[0]]  # x-coordinates for A, B, and midpoint
+    y_coords = [A[1], B[1], midpoint[1]]  # y-coordinates for A, B, and midpoint
 
-# Prepare variables to hold the midpoint values
-mx = ctypes.c_double()
-my = ctypes.c_double()
+    # Plot points A, B, and midpoint M
+    plt.scatter(x_coords, y_coords, color=['red', 'blue', 'green'], label="Points")
+    
+    # Connect points A and B with a line
+    plt.plot([A[0], B[0]], [A[1], B[1]], label="AB", color='black')
 
-# Call the C function to calculate the midpoint
-lib.midpoint(ctypes.c_double(x1), ctypes.c_double(y1), ctypes.c_double(x2), ctypes.c_double(y2), 
-             ctypes.byref(mx), ctypes.byref(my))
+    # Labels for the points
+    labels = [f'A {A}', f'B {B}', f'M {midpoint}']
+    
+    # Add labels to points A, B, and M
+    for i, (x, y) in enumerate(zip(x_coords, y_coords)):
+        plt.text(x + 0.1, y + 0.1, labels[i], fontsize=9)
 
-# Retrieve the midpoint from the C function
-M = (mx.value, my.value)
-print(f"Midpoint calculated by C: {M}")  # Debugging print statement
+    # Display the calculated distance on the plot (now in the bottom-left corner)
+    plt.text(0.05, 0.05, f'Distance AB: {distance:.2f}', transform=plt.gca().transAxes, fontsize=12,
+             bbox=dict(facecolor='white', alpha=0.7), verticalalignment='bottom', horizontalalignment='left')
 
-# Call the C function to calculate the distance between A and B
-distance_AB = lib.distance(ctypes.c_double(x1), ctypes.c_double(y1), ctypes.c_double(x2), ctypes.c_double(y2))
-print(f"Distance AB calculated by C: {distance_AB:.2f}")
+    # Set axis labels and title
+    plt.title('Segment AB and its Midpoint')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    plt.legend()
+    plt.grid(True)
+    plt.axis('equal')
+    
+    plt.savefig('/home/manvik/Documents/EE1030/1.9.12/figs/plot.png')
 
-# Plot points A, B, and midpoint M
-x_coords = [x1, x2, M[0]]  # x1, x2 for A and B, M[0] for midpoint
-y_coords = [y1, y2, M[1]]  # y1, y2 for A and B, M[1] for midpoint
+def main():
+    A, B = np.array([-6, 7]), np.array([-1, -5])
+    distance, midpoint = calculate(A, B)
+    
+    # Optional: Save results to a file (if needed)
+    with open('results.txt', 'w') as file:
+        file.write(f"{A[0]}, {A[1]}, {B[0]}, {B[1]}, {distance}, {midpoint[0]}, {midpoint[1]}\n")
 
-# Labels for the points
-labels = ['A (-6, 7)', 'B (-1, -5)', f'M {M}']
+    plot(A, B, distance, midpoint)
 
-# Plot points
-plt.scatter(x_coords, y_coords, color=['red', 'blue', 'green'], label="Points")
-
-# Connect points A and B with a line
-plt.plot([x1, x2], [y1, y2], label="AB", color='black')
-
-# Add labels to points A, B, and M
-for i, (x, y) in enumerate(zip(x_coords, y_coords)):
-    plt.text(x + 0.1, y + 0.1, labels[i], fontsize=9)
-
-# Display the calculated distance on the plot
-plt.text(0.05, 0.05, f'Distance AB: {distance_AB:.2f}', transform=plt.gca().transAxes, fontsize=12,
-         bbox=dict(facecolor='white', alpha=0.7), verticalalignment='bottom', horizontalalignment='left')
-
-# Set axis labels and title
-plt.xlabel('X-axis')
-plt.ylabel('Y-axis')
-plt.legend()
-plt.grid(True)
-
-# Save and display the plot
-plt.savefig("fig1.png")
-plt.show()
+if __name__ == "__main__":
+    main()
 
