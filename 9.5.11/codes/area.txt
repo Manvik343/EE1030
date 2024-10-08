@@ -1,0 +1,3 @@
+The area between the curves is: 5.333226
+The area between the curve y = x^2 / 4 and the x-axis is: 5.325336
+The area between the curve x = y^2 / 4 and the y-axis is: 5.325336
