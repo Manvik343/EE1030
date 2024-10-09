@@ -67,7 +67,17 @@ Prove that the curves $y^2 = 4x$ and $x^2 = 4y$ divide the area of the square bo
 \hfill{(12, 2018)}
 
 \solution
-Area of the Square $= 4 \times 4 = 16$.\\
+First, to find points of intersection, substitute $x = \frac{y^2}{4}$ into $x^2 = 4y$:
+
+\begin{align}
+	\brak{\frac{y^2}{4}}^2 &= 4y \\
+	\frac{y^4}{16} &= 4y \\
+	\implies y^4 &= 64y \\
+	\implies y(y^3 - 64) &= 0
+\end{align}
+
+From that we get the $y=0,4$ as solutions. So, the points of intersection are (0,0) and (4,4). \\
+Area of the Square $= 4 \times 4 = 16$.\\ 
 To find area under the curve $y^2 = 4x$ between $y = 0$ and $y = 4$, we integrate the expression for $x$ with respect to $y$:
 
 \begin{align}
@@ -90,7 +100,7 @@ The area enclosed by both the curves together is the area of square remaining af
 	16 - \frac{16}{3} + \frac{16}{3} &= \frac{16}{3}
 \end{align}
 
-Thus, from the results $(3),(6),(7)$ we get that the parabolas divide the the square into three regions of equal area, each having an area of $\frac{16}{3}$.
+Thus, from the above results we get that the parabolas divide the the square into three regions of equal area, each having an area of $\frac{16}{3}$.
 
 \begin{figure}[h!]
 	\centering
