@@ -73,12 +73,12 @@ First, to find points of intersection, substitute $x = \frac{y^2}{4}$ into $x^2 
 	\brak{\frac{y^2}{4}}^2 &= 4y \\
 	\frac{y^4}{16} &= 4y \\
 	\implies y^4 &= 64y \\
-	\implies y(y^3 - 64) &= 0
+	\implies y(y^3 - 64) &= 0 \implies y = 0,4
 \end{align}
 
-From that we get the $y=0,4$ as solutions. So, the points of intersection are (0,0) and (4,4). \\
+So, the points of intersection are (0,0) and (4,4). \\
 Area of the Square $= 4 \times 4 = 16$.\\ 
-To find area under the curve $y^2 = 4x$ between $y = 0$ and $y = 4$, we integrate the expression for $x$ with respect to $y$:
+Area under the curve $y^2 = 4x$ between $y = 0$ and $y = 4$,
 
 \begin{align}
 	\text{Area} &= \int_0^4 \frac{y^2}{4} \, dy = \frac{1}{4} \int_0^4 y^2 \, dy \\
@@ -86,7 +86,7 @@ To find area under the curve $y^2 = 4x$ between $y = 0$ and $y = 4$, we integrat
 	&= \frac{16}{3}
 \end{align}
 
-Now, for area under the $x^2 = 4y$ between $x = 0$ and $x = 4$, we integrate the expression for $y$ with respect to $x$:
+Area under the $x^2 = 4y$ between $x = 0$ and $x = 4$,
 
 \begin{align}
 	\text{Area} &= \int_0^4 \frac{x^2}{4} \, dx = \frac{1}{4} \int_0^4 x^2 \, dx \\
@@ -94,13 +94,10 @@ Now, for area under the $x^2 = 4y$ between $x = 0$ and $x = 4$, we integrate the
 	&= \frac{16}{3}
 \end{align}
 
-The area enclosed by both the curves together is the area of square remaining after removing the area enclosed by the curves and the coordinate axes:
+Remaining area,
+$$16 - \frac{16}{3} + \frac{16}{3} = \frac{16}{3}$$
 
-\begin{align}
-	16 - \frac{16}{3} + \frac{16}{3} &= \frac{16}{3}
-\end{align}
-
-Thus, from the above results we get that the parabolas divide the the square into three regions of equal area, each having an area of $\frac{16}{3}$.
+Thus parabolas divide the the square into three regions of equal area, each having an area of $\frac{16}{3}$.
 
 \begin{figure}[h!]
 	\centering
